@@ -90,6 +90,19 @@ services:
     depends_on:
       - ollama
 
+  retrieval-service:
+    build:
+      context: ./retrieval-service
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8002:8002"
+    networks:
+      - app-network
+    depends_on:
+      - ollama
+      - qdrant
+
 networks:
   app-network:
     driver: bridge
