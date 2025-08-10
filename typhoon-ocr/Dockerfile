@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && \
-  apt-get install -y poppler-utils && \
+  apt-get install -y poppler-utils libmagic-dev tesseract-ocr && \
   rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies

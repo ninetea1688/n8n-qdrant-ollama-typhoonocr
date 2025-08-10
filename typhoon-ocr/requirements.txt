@@ -3,4 +3,10 @@ fastapi==0.104.1
 uvicorn==0.24.0
 python-multipart==0.0.6
 python-jose==3.3.0
-aiofiles==23.2.1 
+aiofiles==23.2.1
+opencv-python-headless
+numpy
+scikit-image
+pdf2image
+unstructured[local-inference]
+pytesseract
