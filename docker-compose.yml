@@ -78,6 +78,18 @@ services:
     networks:
       - app-network
 
+  chunker-service:
+    build:
+      context: ./chunker-service
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8001:8001"
+    networks:
+      - app-network
+    depends_on:
+      - ollama
+
 networks:
   app-network:
     driver: bridge
