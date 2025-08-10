@@ -8,7 +8,10 @@
 - **PostgreSQL**: ฐานข้อมูลสำหรับ N8N
 - **Ollama**: Local LLM สำหรับการประมวลผลภาษา
 - **Qdrant**: Vector database สำหรับการค้นหาแบบ semantic
-- **OpenTyphoon OCR**: OCR engine สำหรับภาษาไทย
+- **OpenTyphoon OCR**: Enhanced OCR engine with pre-processing and layout analysis.
+- **Chunker Service**: A service to chunk and embed text.
+- **Retrieval Service**: A service for advanced search in Qdrant.
+- **Chat UI**: A Streamlit-based chat interface for interacting with the RAG pipeline.
 
 ## การติดตั้ง
 
@@ -28,6 +31,26 @@ docker-compose up -d
 - **Qdrant API**: http://localhost:6333
 - **Qdrant Dashboard**: http://localhost:6334
 - **OpenTyphoon OCR**: http://localhost:8000
+- **Chunker Service**: http://localhost:8001
+- **Retrieval Service**: http://localhost:8002
+- **Chat UI**: http://localhost:8501
+
+## Chat UI
+
+A simple web interface is provided to chat with your RAG system.
+
+### **Important Setup Step**
+
+Before using the Chat UI, you **must** configure it to point to your n8n workflow.
+
+1.  **Create a Retrieval Workflow in n8n:** Use the `n8n_retrieval_workflow_guide.md` guide to build this workflow.
+2.  **Set the Start Node to "Webhook":** The first node in this workflow must be a `Webhook` node.
+3.  **Get the Webhook URL:** Copy the "Test URL" from the n8n Webhook node.
+4.  **Update the Chat UI Code:**
+    *   Open the file `chat-ui/app.py`.
+    *   Find the line `N8N_WEBHOOK_URL = "YOUR_N8N_RETRIEVAL_WORKFLOW_WEBHOOK_URL_HERE"`.
+    *   Replace the placeholder URL with the actual URL you copied from n8n.
+5.  Restart the `chat-ui` service if it's already running: `docker compose restart chat-ui`
 
 ## การตั้งค่า
 

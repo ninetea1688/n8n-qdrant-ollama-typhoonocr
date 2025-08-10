@@ -103,6 +103,18 @@ services:
       - ollama
       - qdrant
 
+  chat-ui:
+    build:
+      context: ./chat-ui
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8501:8501"
+    networks:
+      - app-network
+    depends_on:
+      - n8n
+
 networks:
   app-network:
     driver: bridge
